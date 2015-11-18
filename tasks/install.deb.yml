@@ -14,6 +14,6 @@
   when: openvpn_use_ldap|default(false)
 
 - name: Install password auth dependencies
-  apt: name=openvpn-auth-password
-  with_items: [mysql-server]
+  apt: name={{item}}
   when: openvpn_use_password
+  with_items: [mysql-server, libgcrypt11-dev, uuid-runtime]
