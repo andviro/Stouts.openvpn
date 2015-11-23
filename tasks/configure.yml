@@ -35,7 +35,9 @@
 - name: Generate Clients configurations
   template: src=client.conf.j2 dest={{openvpn_keydir}}/{{item}}.ovpn
   with_items: openvpn_clients
-  notify: openvpn pack clients
+  notify:
+    - openvpn pack clients
+    - openvpn fetch clients
   register: openvpn_clients_changed
 
 - name: Setup PAM
